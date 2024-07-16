@@ -1,8 +1,5 @@
 namespace SunamoXliffParser;
 
-
-
-
 public static class XmlUtil
 {
     private static readonly Type type = typeof(XmlUtil);

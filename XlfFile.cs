@@ -1,4 +1,5 @@
 namespace SunamoXliffParser;
+
 public class XlfFile
 {
     public enum AddMode
