@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Description>Just fork from https://www.nuget.org/packages/fmdev.XliffParser, due to .NET 5+</Description>
-    <Version>24.7.15.1</Version>
+    <Version>24.7.16.1</Version>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
     <PackageProjectUrl>https://sunamo.cz/</PackageProjectUrl>

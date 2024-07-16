@@ -1,4 +1,4 @@
-//namespace SunamoXliffParser._sunamo.SunamoExceptions._AddedToAllCsproj;
+namespace SunamoXliffParser._sunamo;
 
 internal class CA
 {
