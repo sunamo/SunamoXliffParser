@@ -1,8 +1,8 @@
 namespace SunamoXliffParser;
 
 public class XlfHeader
+{
+    public XlfHeader(XElement e)
     {
-        public XlfHeader(XElement e)
-        {
-        }
     }
+}

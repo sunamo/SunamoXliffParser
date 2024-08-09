@@ -1,4 +1,5 @@
 namespace SunamoXliffParser.fmdev.ResX;
+
 [Flags]
 public enum ResXOption
 {

@@ -6,23 +6,17 @@ public static class XmlUtil
 
     public static string GetAttributeIfExists(XElement node, string name)
     {
-        if (node == null)
-        {
-            ThrowEx.IsNull(nameof(node));
-        }
+        if (node == null) ThrowEx.IsNull(nameof(node));
 
-        XAttribute a = node.Attribute(name);
+        var a = node.Attribute(name);
         return a != null ? a.Value : string.Empty;
     }
 
     public static int GetIntAttributeIfExists(XElement node, string name)
     {
-        if (node == null)
-        {
-            ThrowEx.IsNull(nameof(node));
-        }
+        if (node == null) ThrowEx.IsNull(nameof(node));
 
-        XAttribute a = node.Attribute(name);
+        var a = node.Attribute(name);
         return a != null ? int.Parse(a.Value) : 0;
     }
 

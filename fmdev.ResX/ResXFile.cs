@@ -2,20 +2,19 @@ namespace SunamoXliffParser.fmdev.ResX;
 
 public static class ResXFile
 {
-
     private static readonly Type type = typeof(ResXFile);
 
     public static List<ResXEntry> Read(string filename, ResXOption options = ResXOption.None)
     {
-        List<ResXEntry> result = new List<ResXEntry>();
-        using (ResXResourceReader resx = new ResXResourceReader(filename))
+        var result = new List<ResXEntry>();
+        using (var resx = new ResXResourceReader(filename))
         {
             resx.UseResXDataNodes = true;
-            System.Collections.IDictionaryEnumerator dict = resx.GetEnumerator();
+            var dict = resx.GetEnumerator();
             while (dict.MoveNext())
             {
-                ResXDataNode node = dict.Value as ResXDataNode;
-                string comment = options.HasFlag(ResXOption.SkipComments)
+                var node = dict.Value as ResXDataNode;
+                var comment = options.HasFlag(ResXOption.SkipComments)
                     ? string.Empty
                     : node.Comment.Replace("\r", string.Empty);
                 result.Add(new ResXEntry
@@ -34,16 +33,14 @@ public static class ResXFile
 
     public static void Write(string filename, IEnumerable<ResXEntry> entries, ResXOption options = ResXOption.None)
     {
-        using (ResXResourceWriter resx = new ResXResourceWriter(filename))
+        using (var resx = new ResXResourceWriter(filename))
         {
-            foreach (ResXEntry entry in entries)
+            foreach (var entry in entries)
             {
-                ResXDataNode node = new ResXDataNode(entry.Id,
+                var node = new ResXDataNode(entry.Id,
                     entry.Value.Replace("\r", string.Empty).Replace("\n", Environment.NewLine));
                 if (!options.HasFlag(ResXOption.SkipComments) && !string.IsNullOrWhiteSpace(entry.Comment))
-                {
                     node.Comment = entry.Comment.Replace("\r", string.Empty).Replace("\n", Environment.NewLine);
-                }
 
                 resx.AddResource(node);
             }
