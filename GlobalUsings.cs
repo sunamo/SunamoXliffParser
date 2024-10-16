@@ -11,7 +11,7 @@ global using System.ComponentModel.Design;
 global using System.Resources.NetStandard;
 global using System.Collections;
 global using SunamoXliffParser.fmdev.ResX;
-global using SunamoXliffParser._sunamo.SunamoValues;
+global using SunamoXliffParser;
 global using SunamoXliffParser._sunamo.SunamoExceptions;
 global using System.Diagnostics;
 global using System.Reflection;
