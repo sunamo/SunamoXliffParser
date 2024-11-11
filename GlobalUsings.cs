@@ -15,3 +15,5 @@ global using SunamoXliffParser._sunamo.SunamoExceptions;
 global using System.Diagnostics;
 global using System.Reflection;
 global using System.Net;
+global using SunamoXliffParser;
+global using SunamoXliffParser._sunamo;

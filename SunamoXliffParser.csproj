@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Description>Just fork from https://www.nuget.org/packages/fmdev.XliffParser, due to .NET 5+</Description>
-    <Version>24.11.9.1</Version>
+    <Version>24.11.11.1</Version>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
     <PackageProjectUrl>https://sunamo.cz/</PackageProjectUrl>
@@ -11,6 +11,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageReleaseNotes>Fix empty string for spaces</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ResXResourceReader.NetStandard" Version="1.2.0" />
