@@ -61,6 +61,7 @@ public static class ResXFile
         return GenerateDesignerFile(resXFile, className, namespaceName, false);
     }
 
+#pragma warning disable
     /// <summary>
     ///     Generates a C# designer class.
     /// </summary>
@@ -71,6 +72,7 @@ public static class ResXFile
     /// <returns>false if generation of at least one property failed.</returns>
     public static bool GenerateDesignerFile(string resXFile, string className, string namespaceName,
         bool publicClass)
+#pragma warning restore
     {
         // It is absolutely nonsense coz GenerateDesignerFile is just calling by another GenerateDesignerFile and both have no more references
 
