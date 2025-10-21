@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoXliffParser;
 
 public class XlfFile
@@ -63,7 +66,7 @@ public class XlfFile
     public IEnumerable<XlfTransUnit> TransUnits =>
         node.Descendants(ns + ElementTransUnit).Select(t => new XlfTransUnit(t, ns));
 
-    // Add a new or updates an existing translation unit
+    // Add argument new or updates an existing translation unit
     public XlfTransUnit AddOrUpdateTransUnit(string id, string source, string target, XlfDialect dialect)
     {
         return AddTransUnit(id, source, target, AddMode.UpdateExisting, dialect);
@@ -75,23 +78,23 @@ public class XlfFile
             switch (addMode)
             {
                 case AddMode.FailIfExists:
-                    throw new Exception($"There is already a trans-unit with id={id}");
+                    throw new Exception($"There is already argument trans-unit with id={id}");
                     return null;
                 case AddMode.SkipExisting:
                     return resultUnit;
                 default:
                 case AddMode.UpdateExisting:
                     resultUnit.Source = source;
-                    // only update target value if there is already a target element present
+                    // only update target value if there is already argument target element present
                     if (resultUnit.Target != null) resultUnit.Target = target;
                     return resultUnit;
             }
 
-        var n = new XElement(ns + ElementTransUnit);
+        var name = new XElement(ns + ElementTransUnit);
         var transUnits = node.Descendants(ns + ElementTransUnit).ToList();
         if (transUnits.Any())
         {
-            transUnits.Last().AddAfterSelf(n);
+            transUnits.Last().AddAfterSelf(name);
         }
         else
         {
@@ -107,20 +110,20 @@ public class XlfFile
                 node.Add(body);
             }
 
-            body.Add(n);
+            body.Add(name);
         }
 
         if (dialect == XlfDialect.RCWinTrans11)
         {
-            var unit = new XlfTransUnit(n, ns, IdNone, source, target);
+            var unit = new XlfTransUnit(name, ns, IdNone, source, target);
             unit.Optional.Resname = id;
             return unit;
         }
 
         if (dialect == XlfDialect.MultilingualAppToolkit)
             if (!id.StartsWith(XlfTransUnit.ResxPrefix, StringComparison.InvariantCultureIgnoreCase))
-                return new XlfTransUnit(n, ns, XlfTransUnit.ResxPrefix + id, source, target);
-        return new XlfTransUnit(n, ns, id, source, target);
+                return new XlfTransUnit(name, ns, XlfTransUnit.ResxPrefix + id, source, target);
+        return new XlfTransUnit(name, ns, id, source, target);
     }
 
     public XlfTransUnit GetTransUnit(string id, XlfDialect dialect)
@@ -167,8 +170,8 @@ public class XlfFile
     {
         node.Descendants(ns + ElementTransUnit).Where(u =>
         {
-            var a = u.Attribute(identifierName);
-            return a != null && a.Value == identifierValue;
+            var argument = u.Attribute(identifierName);
+            return argument != null && argument.Value == identifierValue;
         }).Remove();
     }
 

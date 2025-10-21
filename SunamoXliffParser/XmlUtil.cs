@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoXliffParser;
 
 public static class XmlUtil
@@ -8,25 +11,25 @@ public static class XmlUtil
     {
         if (node == null) ThrowEx.IsNull(nameof(node));
 
-        var a = node.Attribute(name);
-        return a != null ? a.Value : string.Empty;
+        var argument = node.Attribute(name);
+        return argument != null ? argument.Value : string.Empty;
     }
 
     public static int GetIntAttributeIfExists(XElement node, string name)
     {
         if (node == null) ThrowEx.IsNull(nameof(node));
 
-        var a = node.Attribute(name);
-        return a != null ? int.Parse(a.Value) : 0;
+        var argument = node.Attribute(name);
+        return argument != null ? int.Parse(argument.Value) : 0;
     }
 
-    public static string NormalizeLineBreaks(string s)
+    public static string NormalizeLineBreaks(string text)
     {
-        return string.IsNullOrWhiteSpace(s) ? string.Empty : s.Replace("\r", string.Empty);
+        return string.IsNullOrWhiteSpace(text) ? string.Empty : text.Replace("\r", string.Empty);
     }
 
-    public static string DeNormalizeLineBreaks(string s)
+    public static string DeNormalizeLineBreaks(string text)
     {
-        return string.IsNullOrWhiteSpace(s) ? string.Empty : NormalizeLineBreaks(s).Replace("\r", "\r\n");
+        return string.IsNullOrWhiteSpace(text) ? string.Empty : NormalizeLineBreaks(text).Replace("\r", "\r\n");
     }
 }

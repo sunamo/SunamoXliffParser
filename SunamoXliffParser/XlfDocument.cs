@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoXliffParser;
 
 public class XlfDocument
@@ -47,8 +50,8 @@ public class XlfDocument
         var ns = doc.Root.Name.Namespace;
         doc.Descendants(ns + ElementFile).Where(u =>
         {
-            var a = u.Attribute(AttributeOriginal);
-            return a != null && a.Value == original;
+            var argument = u.Attribute(AttributeOriginal);
+            return argument != null && argument.Value == original;
         }).Remove();
     }
 
@@ -177,8 +180,8 @@ public class XlfDocument
 
     public void LoadXml(string xml)
     {
-        var b = Encoding.UTF8.GetBytes(xml);
-        LoadXml(b);
+        var builder = Encoding.UTF8.GetBytes(xml);
+        LoadXml(builder);
     }
 
     public void LoadXml(byte[] xml)

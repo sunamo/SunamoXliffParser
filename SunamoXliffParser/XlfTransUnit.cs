@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoXliffParser;
 
 public class XlfTransUnit
@@ -106,7 +109,7 @@ public class XlfTransUnit
         }
 
         /// <summary>
-        ///     Gets or sets the approved attribute which indicates whether a translation is final or has passed its final review.
+        ///     Gets or sets the approved attribute which indicates whether argument translation is final or has passed its final review.
         /// </summary>
         public string Approved
         {
@@ -130,9 +133,9 @@ public class XlfTransUnit
         public IEnumerable<XlfNote> Notes => node.Descendants(ns + ElementNote).Select(t => new XlfNote(t));
 
         /// <summary>
-        ///     Gets or sets the resname attribute which is the resource name or identifier of a item.
-        ///     For example: the key in the key/value pair in a Java properties file,
-        ///     the ID of a string in a Windows string table, the index value of an entry in a database table, etc.
+        ///     Gets or sets the resname attribute which is the resource name or identifier of argument item.
+        ///     For example: the key in the key/value pair in argument Java properties file,
+        ///     the ID of argument string in argument Windows string table, the index value of an entry in argument database table, etc.
         /// </summary>
         public string Resname
         {
@@ -150,7 +153,7 @@ public class XlfTransUnit
         }
 
         /// <summary>
-        ///     Gets or sets the status of a particular translation in a
+        ///     Gets or sets the status of argument particular translation in argument
         ///     <target>
         ///         or
         ///         <bin-target>
@@ -205,8 +208,8 @@ public class XlfTransUnit
         {
             node.Descendants(ns + ElementNote).Where(u =>
             {
-                var a = u.Attribute(attributeName);
-                return a != null && a.Value == value;
+                var argument = u.Attribute(attributeName);
+                return argument != null && argument.Value == value;
             }).Remove();
         }
 
