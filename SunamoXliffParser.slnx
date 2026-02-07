@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SunamoXliffParser.Tests\\SunamoXliffParser.Tests.csproj" />
+  <Project Path="RunnerXliffParser\\RunnerXliffParser.csproj" />
+  <Project Path="SunamoXliffParser\SunamoXliffParser.csproj" />
+</Solution>
