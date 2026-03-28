@@ -1,18 +1,57 @@
-// variables names: ok
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoXliffParser;
 
+/// <summary>
+/// Defines the predefined state values for XLIFF translation units as specified by the XLIFF standard.
+/// </summary>
 public enum Predefined
 {
-    Final, // Indicates the terminating state.
-    NeedsAdaptation, // Indicates only non-textual information needs adaptation.
-    NeedsL10n, // Indicates both text and non-textual information needs adaptation.
-    NeedsReviewAdaptation, // Indicates only non-textual information needs review.
-    NeedsReviewL10n, // Indicates both text and non-textual information needs review.
-    NeedsReviewTranslation, // Indicates that only the text of the item needs to be reviewed.
-    NeedsTranslation, // Indicates that the item needs to be translated.
-    New, // Indicates that the item is new. For example, translation units that were not in a previous version of the document.
-    SignedOff, // Indicates that changes are reviewed and approved.
-    Translated // Indicates that the item has been translated.
+    /// <summary>
+    /// Indicates the terminating state.
+    /// </summary>
+    Final,
+
+    /// <summary>
+    /// Indicates only non-textual information needs adaptation.
+    /// </summary>
+    NeedsAdaptation,
+
+    /// <summary>
+    /// Indicates both text and non-textual information needs adaptation.
+    /// </summary>
+    NeedsL10n,
+
+    /// <summary>
+    /// Indicates only non-textual information needs review.
+    /// </summary>
+    NeedsReviewAdaptation,
+
+    /// <summary>
+    /// Indicates both text and non-textual information needs review.
+    /// </summary>
+    NeedsReviewL10n,
+
+    /// <summary>
+    /// Indicates that only the text of the item needs to be reviewed.
+    /// </summary>
+    NeedsReviewTranslation,
+
+    /// <summary>
+    /// Indicates that the item needs to be translated.
+    /// </summary>
+    NeedsTranslation,
+
+    /// <summary>
+    /// Indicates that the item is new, for example translation units not in a previous version.
+    /// </summary>
+    New,
+
+    /// <summary>
+    /// Indicates that changes are reviewed and approved.
+    /// </summary>
+    SignedOff,
+
+    /// <summary>
+    /// Indicates that the item has been translated.
+    /// </summary>
+    Translated
 }

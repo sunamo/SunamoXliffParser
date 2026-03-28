@@ -1,12 +1,18 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoXliffParser;
 
+/// <summary>
+/// Represents the header element of an XLIFF file.
+/// </summary>
 public class XlfHeader
 {
-#pragma warning disable
-    public XlfHeader(XElement e)
-#pragma warning restore
+    private readonly XElement node;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="XlfHeader"/> class.
+    /// </summary>
+    /// <param name="node">The XML element representing the header.</param>
+    public XlfHeader(XElement node)
     {
+        this.node = node;
     }
 }

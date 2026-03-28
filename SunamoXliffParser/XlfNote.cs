@@ -1,45 +1,50 @@
 namespace SunamoXliffParser;
 
 /// <summary>
-///     The
-///     <note>
-///         element is used to add localization-related comments to the XLIFF document. The content of
-///         <note>
-///             may be instructions from developers about how to handle the
-///             <source>
-///                 , comments from the translator about the
-///                 translation, or any comment from anyone involved in processing the XLIFF file. The optional xml:lang
-///                 attribute
-///                 specifies the language of the note content. The optional from attribute indicates who entered the note.
-///                 The optional priority attribute allows a priority from 1 (high) to 10 (low) to be assigned to the note.
-///                 The optional annotates attribute indicates if the note is a general note or, in the case of a
-///                 <trans-unit>
-///                     ,
-///                     pertains specifically to the <source> or the <target> element.
+/// Represents a note element in an XLIFF document used to add localization-related comments.
+/// The content may be instructions from developers, comments from translators,
+/// or any comment from anyone involved in processing the XLIFF file.
 /// </summary>
 public class XlfNote
 {
     private readonly XElement node;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="XlfNote"/> class.
+    /// </summary>
+    /// <param name="node">The XML element representing the note.</param>
     public XlfNote(XElement node)
     {
         this.node = node;
         Optional = new Optionals(this.node);
     }
 
+    /// <summary>
+    /// Gets the optional attributes of this note.
+    /// </summary>
     public Optionals Optional { get; }
 
+    /// <summary>
+    /// Gets or sets the text content of the note.
+    /// </summary>
     public string Value
     {
         get => node.Value;
         set => node.Value = value;
     }
 
+    /// <summary>
+    /// Gets the underlying XML element of this note.
+    /// </summary>
+    /// <returns>The XML element representing this note.</returns>
     public XElement GetNode()
     {
         return node;
     }
 
+    /// <summary>
+    /// Provides access to optional attributes of a note element.
+    /// </summary>
     public class Optionals
     {
         private const string AttributeAnnotates = "annotates";
@@ -47,16 +52,18 @@ public class XlfNote
         private const string AttributePriority = "priority";
         private readonly XElement node;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Optionals"/> class.
+        /// </summary>
+        /// <param name="node">The XML element containing optional attributes.</param>
         public Optionals(XElement node)
         {
             this.node = node;
         }
 
         /// <summary>
-        ///     Indicates if the note is a general note or, in the case of a
-        ///     <trans-unit>
-        ///         ,
-        ///         pertains specifically to the <source> or the <target> element.
+        /// Gets or sets the annotates attribute indicating if the note is general
+        /// or pertains specifically to the source or the target element.
         /// </summary>
         public string Annotates
         {
@@ -65,7 +72,7 @@ public class XlfNote
         }
 
         /// <summary>
-        ///     Indicates who entered the note.
+        /// Gets or sets the from attribute indicating who entered the note.
         /// </summary>
         public string From
         {
@@ -74,7 +81,7 @@ public class XlfNote
         }
 
         /// <summary>
-        ///     Specifies the language of the note content.
+        /// Gets or sets the language of the note content.
         /// </summary>
         public string Lang
         {
@@ -83,7 +90,7 @@ public class XlfNote
         }
 
         /// <summary>
-        ///     Allows a priority from 1 (high) to 10 (low) to be assigned to the note.
+        /// Gets or sets the priority from 1 (high) to 10 (low) assigned to the note.
         /// </summary>
         public int Priority
         {

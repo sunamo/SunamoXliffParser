@@ -1,55 +1,78 @@
 namespace SunamoXliffParser._sunamo.SunamoExceptions;
 
-// © www.sunamo.cz. All Rights Reserved.
+/// <summary>
+/// Provides helper methods for building exception messages and inspecting the call stack.
+/// </summary>
 internal sealed partial class Exceptions
 {
-    #region Other
+    /// <summary>
+    /// Prepends the specified prefix to an exception message if it is not empty.
+    /// </summary>
+    /// <param name="before">The prefix text to prepend.</param>
+    /// <returns>The prefix followed by a colon and space, or an empty string if the prefix is empty.</returns>
     internal static string CheckBefore(string before)
     {
         return string.IsNullOrWhiteSpace(before) ? string.Empty : before + ": ";
     }
 
-    internal static Tuple<string, string, string> PlaceOfException(
-bool fillAlsoFirstTwo = true)
+    /// <summary>
+    /// Determines the type, method name, and stack trace of the calling code.
+    /// </summary>
+    /// <param name="shouldFillTypeAndMethod">Whether to fill the type and method name from the first non-ThrowEx frame.</param>
+    /// <returns>A tuple containing the type name, method name, and full stack trace text.</returns>
+    internal static Tuple<string, string, string> PlaceOfException(bool shouldFillTypeAndMethod = true)
     {
-        StackTrace st = new();
-        var value = st.ToString();
-        var lines = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        StackTrace stackTrace = new();
+        var stackTraceText = stackTrace.ToString();
+        var lines = stackTraceText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
         lines.RemoveAt(0);
         var i = 0;
-        string type = string.Empty;
+        string typeName = string.Empty;
         string methodName = string.Empty;
         for (; i < lines.Count; i++)
         {
-            var item = lines[i];
-            if (fillAlsoFirstTwo)
-                if (!item.StartsWith("   at ThrowEx"))
+            var line = lines[i];
+            if (shouldFillTypeAndMethod)
+                if (!line.StartsWith("   at ThrowEx"))
                 {
-                    TypeAndMethodName(item, out type, out methodName);
-                    fillAlsoFirstTwo = false;
+                    TypeAndMethodName(line, out typeName, out methodName);
+                    shouldFillTypeAndMethod = false;
                 }
-            if (item.StartsWith("at System."))
+            if (line.StartsWith("at System."))
             {
                 lines.Add(string.Empty);
                 lines.Add(string.Empty);
                 break;
             }
         }
-        return new Tuple<string, string, string>(type, methodName, string.Join(Environment.NewLine, lines));
+        return new Tuple<string, string, string>(typeName, methodName, string.Join(Environment.NewLine, lines));
     }
-    internal static void TypeAndMethodName(string lines, out string type, out string methodName)
+
+    /// <summary>
+    /// Extracts the type name and method name from a stack trace line.
+    /// </summary>
+    /// <param name="stackTraceLine">A single line from a stack trace.</param>
+    /// <param name="typeName">The extracted type name.</param>
+    /// <param name="methodName">The extracted method name.</param>
+    internal static void TypeAndMethodName(string stackTraceLine, out string typeName, out string methodName)
     {
-        var s2 = lines.Split("at ")[1].Trim();
-        var text = s2.Split("(")[0];
-        var parameter = text.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-        methodName = parameter[^1];
-        parameter.RemoveAt(parameter.Count - 1);
-        type = string.Join(".", parameter);
+        var afterAtKeyword = stackTraceLine.Split("at ")[1].Trim();
+        var fullMethodName = afterAtKeyword.Split("(")[0];
+        var segments = fullMethodName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        methodName = segments[^1];
+        segments.RemoveAt(segments.Count - 1);
+        typeName = string.Join(".", segments);
     }
-    internal static string CallingMethod(int value = 1)
+
+    /// <summary>
+    /// Gets the name of the calling method at the specified stack frame depth.
+    /// </summary>
+    /// <param name="frameDepth">The stack frame depth to inspect.</param>
+    /// <returns>The name of the calling method, or a fallback message if it cannot be determined.</returns>
+    internal static string CallingMethod(int frameDepth = 1)
     {
         StackTrace stackTrace = new();
-        var methodBase = stackTrace.GetFrame(value)?.GetMethod();
+        var methodBase = stackTrace.GetFrame(frameDepth)?.GetMethod();
         if (methodBase == null)
         {
             return "Method name cannot be get";
@@ -57,12 +80,14 @@ bool fillAlsoFirstTwo = true)
         var methodName = methodBase.Name;
         return methodName;
     }
-    #endregion
 
-    #region IsNullOrWhitespace
-    readonly static StringBuilder sbAdditionalInfoInner = new();
-    readonly static StringBuilder sbAdditionalInfo = new();
-    #endregion
+    /// <summary>
+    /// Builds an error message indicating that a variable is null.
+    /// </summary>
+    /// <param name="before">A prefix for the error message, typically the calling context.</param>
+    /// <param name="variableName">The name of the variable that is null.</param>
+    /// <param name="variable">The variable to check for null.</param>
+    /// <returns>An error message string if the variable is null; otherwise, null.</returns>
     internal static string? IsNull(string before, string variableName, object? variable)
     {
         return variable == null ? CheckBefore(before) + variableName + " " + "is null" + "." : null;

@@ -1,20 +1,27 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoXliffParser;
 
-/*
- <header>
-  <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
- </header>
-*/
-
+/// <summary>
+/// Represents the tool element of an XLIFF file header, containing metadata about the tool that created the file.
+/// </summary>
 public class XlfTool
 {
-    public string Company { get; }
+    /// <summary>
+    /// Gets the company name of the tool.
+    /// </summary>
+    public string Company { get; } = string.Empty;
 
-    public string Id { get; }
+    /// <summary>
+    /// Gets the tool identifier.
+    /// </summary>
+    public string Id { get; } = string.Empty;
 
-    public string Name { get; }
+    /// <summary>
+    /// Gets the name of the tool.
+    /// </summary>
+    public string Name { get; } = string.Empty;
 
-    public string Version { get; }
+    /// <summary>
+    /// Gets the version of the tool.
+    /// </summary>
+    public string Version { get; } = string.Empty;
 }
