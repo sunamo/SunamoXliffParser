@@ -1,7 +1,16 @@
 namespace SunamoXliffParser.fmdev.ResX;
 
+/// <summary>
+/// Provides methods for reading and writing ResX resource files.
+/// </summary>
 public static class ResXFile
 {
+    /// <summary>
+    /// Reads all entries from the specified ResX file.
+    /// </summary>
+    /// <param name="filePath">The path to the ResX file to read.</param>
+    /// <param name="options">Options controlling the read behavior.</param>
+    /// <returns>A list of resource entries read from the file.</returns>
     public static List<ResXEntry> Read(string filePath, ResXOption options = ResXOption.None)
     {
         var result = new List<ResXEntry>();
@@ -29,6 +38,12 @@ public static class ResXFile
         return result;
     }
 
+    /// <summary>
+    /// Writes the specified entries to a ResX file.
+    /// </summary>
+    /// <param name="filePath">The path to the ResX file to write.</param>
+    /// <param name="entries">The collection of resource entries to write.</param>
+    /// <param name="options">Options controlling the write behavior.</param>
     public static void Write(string filePath, IEnumerable<ResXEntry> entries, ResXOption options = ResXOption.None)
     {
         using (var writer = new ResXResourceWriter(filePath))
