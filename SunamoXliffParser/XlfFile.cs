@@ -347,9 +347,6 @@ public class XlfFile
         /// </summary>
         /// <param name="name">The name of the attribute to retrieve.</param>
         /// <returns>The attribute value, or an empty string if the attribute does not exist.</returns>
-        public string GetAttributeIfExists(string name)
-        {
-            return XmlUtil.GetAttributeIfExists(node, name);
-        }
+        public string GetAttributeIfExists(string name) => XmlUtil.GetAttributeIfExists(node, name);
     }
 }

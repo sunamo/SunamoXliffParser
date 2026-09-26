@@ -38,8 +38,5 @@ public class UpdateResult
     /// Determines whether any items were added, removed, or updated.
     /// </summary>
     /// <returns>True if any items were changed; otherwise, false.</returns>
-    public bool Any()
-    {
-        return AddedItems.Any() || RemovedItems.Any() || UpdatedItems.Any();
-    }
+    public bool Any() => AddedItems.Any() || RemovedItems.Any() || UpdatedItems.Any();
 }

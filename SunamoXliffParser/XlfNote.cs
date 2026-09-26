@@ -37,10 +37,7 @@ public class XlfNote
     /// Gets the underlying XML element of this note.
     /// </summary>
     /// <returns>The XML element representing this note.</returns>
-    public XElement GetNode()
-    {
-        return node;
-    }
+    public XElement GetNode() => node;
 
     /// <summary>
     /// Provides access to optional attributes of a note element.
