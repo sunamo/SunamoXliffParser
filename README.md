@@ -1,5 +1,10 @@
 # SunamoXliffParser
 
+## Short description
+
+Knihovna pro parsování, úpravu a export dokumentů XLIFF (formát pro lokalizaci). Jde o fork balíčku fmdev.XliffParser upravený pro .NET 8 a novější. Součást sbírky pinp.
+
+
 A .NET library for parsing, modifying, and exporting XLIFF (XML Localization Interchange File Format) documents. Fork of [fmdev.XliffParser](https://www.nuget.org/packages/fmdev.XliffParser) updated for .NET 8+.
 
 ## Overview
